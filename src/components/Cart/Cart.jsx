@@ -34,7 +34,7 @@ const Cart = ({ setShowCart }) => {
                 </div>
 
 
-                {!cartItems.length && (
+                {!cartItems?.length && (
                     <>
                         <div className="empty-cart">
                             <BsCartX />
@@ -49,7 +49,7 @@ const Cart = ({ setShowCart }) => {
 
                     </>
                 )}
-                {!!cartItems.length && (
+                {!!cartItems?.length && (
                     <>
                         <CartItem />
                         <div className="cart-footer">

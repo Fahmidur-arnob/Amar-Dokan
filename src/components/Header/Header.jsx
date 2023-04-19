@@ -12,6 +12,7 @@ const Header = () => {
     const [scrollCount, setScrollCount] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const { cartCount } = useContext(Context);
     const navigate = useNavigate();
 
     const handleScroll = () => {
@@ -50,7 +51,9 @@ const Header = () => {
                             onClick={() => setShowCart(true)}
                         >
                             <CgShoppingCart />
-                            <span>50</span>
+                            {
+                                !!cartCount && <span>{cartCount}</span>
+                            }
                         </span>
                     </div>
                 </div>
