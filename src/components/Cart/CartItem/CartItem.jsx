@@ -1,34 +1,44 @@
 import { MdClose } from 'react-icons/md';
+import prod from "../../../assets/products/earbuds-prod-1.webp";
 import "./CartItem.scss";
 import { Context } from "../../../utils/context";
 import React, { useContext } from "react";
 
 const CartItem = () => {
-    const { cartItems, handleRemoveFromCart,handleCartProductQuantity } = useContext(Context);
+    const { cartItems, handleRemoveFromCart, handleCartProductQuantity } = useContext(Context);
 
     return (
         <div className="cart-products">
-            <div className="cart-product">
-                <div className="img-container">
-                    <img src={prod} alt="product" />
-                </div>
-                <div className="prod-details">
-                    <span className="name">
-                        Product Name
-                    </span>
-                    <MdClose className='close-button' />
-                    <div className="quantity-buttons">
-                        <span>-</span>
-                        <span>5</span>
-                        <span>+</span>
+            {cartItems.map((item) => (
+                <div key={item.id} className="cart-product">
+                    <div className="img-container">
+                        <img src={prod} alt="product" />
                     </div>
-                    <div className="text">
-                        <span>3</span>
-                        <span>x</span>
-                        <span className='highlight'>&#36;price</span>
+                    <div className="prod-details">
+                        <span className="name">
+                            {item.attributes.title}
+                        </span>
+                        <MdClose
+                            className='close-button'
+                            onClick={() => handleRemoveFromCart(item)}
+                        />
+                        <div className="quantity-buttons">
+                            <span
+                                onClick={() => handleCartProductQuantity('dec', item)}
+                            >-</span>
+                            <span>{item.attributes.quantity}</span>
+                            <span
+                                onClick={() => handleCartProductQuantity('inc', item)}
+                            >+</span>
+                        </div>
+                        <div className="text">
+                            <span>{item.attributes.quantity}</span>
+                            <span>x</span>
+                            <span className='highlight'>&#36;{item.attributes.price * item.attributes.quantity}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ))}
         </div>
     );
 };

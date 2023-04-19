@@ -5,8 +5,8 @@ import { Context } from '../../utils/context';
 import CartItem from './CartItem/CartItem';
 import "./Cart.scss";
 
-const Cart = () => {
-    const { cartItems, setShowCart, cartSubTotal } = useContext(Context);
+const Cart = ({ setShowCart }) => {
+    const { cartItems, cartSubTotal } = useContext(Context);
 
 
 
@@ -26,7 +26,7 @@ const Cart = () => {
                         className="close-button"
                         onClick={() => setShowCart(false)}
                     >
-                        <MdClose />
+                        <MdClose className='close-button'/>
                         <span className="text">
                             Close
                         </span>
@@ -41,7 +41,7 @@ const Cart = () => {
                             <span>No Products Here</span>
                             <button
                                 className='return-cta'
-                                onClick={() => { }}
+                                onClick={() => {}}
                             >
                                 Shop Now
                             </button>
@@ -71,5 +71,5 @@ const Cart = () => {
         </div>
     );
 };
-//3:11:50
+//5:17:31
 export default Cart;

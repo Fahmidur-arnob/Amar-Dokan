@@ -12,6 +12,7 @@ const Header = () => {
     const [scrollCount, setScrollCount] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const navigate = useNavigate();
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -32,11 +33,11 @@ const Header = () => {
             <header className={`main-header ${scrollCount ? 'sticky-header' : ''}`}>
                 <div className="header-content">
                     <ul className="left">
-                        <li>Home</li>
+                        <li onClick={() => navigate("/")}>Home</li>
                         <li>About</li>
                         <li>Categories</li>
                     </ul>
-                    <div className="center">
+                    <div className="center" onClick={() => navigate("/")}>
                         AMARDOKAN.
                     </div>
                     <div className="right">

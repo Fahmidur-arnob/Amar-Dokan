@@ -19,21 +19,20 @@ const SingleProduct = () => {
     const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
     const { handleAddToCart } = useContext(Context);
 
+    const increment = () => {
+        setQuantity((prevState) => prevState + 1);
+    };
+
     const decrement = () => {
         setQuantity((prevState) => {
             if (prevState === 1) return 1;
             return prevState - 1;
         });
     };
-    const increment = () => {
-        setQuantity((prevState) => prevState + 1);
-    };
 
 
-    if (!data) {
-        return;
-    }
-    const product = data?.data?.[0]?.attributes;
+    if (!data) return;
+    const product = data?.data[0]?.attributes;
 
     return (
         <div className="single-product-main-content">
@@ -65,7 +64,7 @@ const SingleProduct = () => {
                             <button 
                                 className='add-to-cart-button'
                                 onClick={() => {
-                                    handleAddToCart(data?.data?.[0], quantity);
+                                    handleAddToCart(data.data[0], quantity);
                                     setQuantity(1);
                                 
                                 }}
@@ -97,7 +96,7 @@ const SingleProduct = () => {
                 </div>
                 <RelatedProducts
                     productId={id}
-                    categoryId={product.categories.data[0].id}
+                    categoryId={product?.categories?.data[0]?.id}
                 />
             </div>
         </div>
