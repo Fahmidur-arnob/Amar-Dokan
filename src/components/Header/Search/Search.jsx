@@ -1,6 +1,6 @@
 import { MdClose } from 'react-icons/md';
 import { useState } from 'react';
-import prod from "../../../assets/products/earbuds-prod-1.webp";
+
 import "./Search.scss";
 import { useNavigate } from 'react-router-dom';
 import useFetch from "../../../hooks/useFetch";
@@ -36,17 +36,18 @@ const Search = ({ setShowSearch }) => {
             <div className="search-result-content">
                 <div className="search-results">
                     {data?.data?.map(item => (
-                        <div 
-                            key={item.id} 
+                        <div
+                            key={item.id}
                             className="search-result-item"
                             onClick={() => {
-                                navigate("/product/" + item.id); 
+                                navigate("/product/" + item.id);
+                                setShowSearch(false);
                             }}
                         >
                             <div className="img-container">
-                                <img 
-                                    src={process.env.REACT_APP_DEV_URL + item.attributes.img.data[0].attributes.url} 
-                                    alt="product" 
+                                <img
+                                    src={process.env.REACT_APP_DEV_URL + item.attributes.img.data[0].attributes.url}
+                                    alt="product"
                                 />
                             </div>
                             <div className="prod-details">
@@ -64,7 +65,5 @@ const Search = ({ setShowSearch }) => {
         </div>
     );
 };
-
-//5:58:43
 
 export default Search;

@@ -8,7 +8,7 @@ import Cart from "../Cart/Cart";
 import { Context } from "../../utils/context";
 import './Header.scss';
 
-const Header = () => {
+const Header = ({categories}) => {
     const [scrollCount, setScrollCount] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -35,8 +35,8 @@ const Header = () => {
                 <div className="header-content">
                     <ul className="left">
                         <li onClick={() => navigate("/")}>Home</li>
-                        <li>About</li>
-                        <li>Categories</li>
+                        {/* <li>About</li>
+                        <li>Categories</li> */}
                     </ul>
                     <div className="center" onClick={() => navigate("/")}>
                         AMARDOKAN.
